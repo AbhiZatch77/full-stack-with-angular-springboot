@@ -24,7 +24,7 @@ export class LoginComponent {
   handleLogin() {
     if(this.username==="Abhishek" && this.password==="test"){
       //redirect to welcome page
-      this.router.navigate(['welcome']);
+      this.router.navigate(['welcome',this.username]);
       this.invalidCreds = false;
     }
     else {
