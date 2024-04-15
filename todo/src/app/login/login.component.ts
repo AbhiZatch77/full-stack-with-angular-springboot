@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,14 @@ export class LoginComponent {
   password = "test";
   invalidCreds = false;
 
+  constructor(private router: Router) {
+
+  }
+
   handleLogin() {
     if(this.username==="Abhishek" && this.password==="test"){
+      //redirect to welcome page
+      this.router.navigate(['welcome']);
       this.invalidCreds = false;
     }
     else {
