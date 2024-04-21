@@ -1,21 +1,41 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { WelcomeDataService } from '../service/data/welcome-data.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink,NgIf],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent implements OnInit{
 
   name = "";
-  constructor(private route:ActivatedRoute) {
+  welcomeMessageFromService: String = ''
+  constructor(private route:ActivatedRoute,
+    public welcomeDataService: WelcomeDataService
+  ) {
 
   }
   ngOnInit(): void {
     this.name = this.route.snapshot.params['name'];
+  }
+
+  getWelcomeMessage() {
+    // console.log("get Welcome Message");
+    console.log(this.welcomeDataService.executeHelloWorldBeanService());
+    this.welcomeDataService.executeHelloWorldBeanService().subscribe(
+      response => this.handleSuccessfulResponse(response)
+    );
+    console.log("last line")
+  }
+
+  handleSuccessfulResponse(response: any){
+    this.welcomeMessageFromService = response.message;
+    // console.log(response)
+    // console.log(response.message);
   }
 
 }
