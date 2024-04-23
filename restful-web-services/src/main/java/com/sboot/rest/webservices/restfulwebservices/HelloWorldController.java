@@ -19,6 +19,7 @@ public class HelloWorldController {
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloWorldBean() {
 		return new HelloWorldBean("Hello World");
+//		throw new RuntimeException("Error Occurred");
 	}
 	
 	@GetMapping(path = "/hello-world/path-variable/{name}")
