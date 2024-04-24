@@ -14,4 +14,8 @@ export class TodoDataService {
     // console.log("Exceute hello world service");
   }
 
+  deleteTodo(username:string, id:number) {
+    return this.http.delete(`http://localhost:8080/users/${username}/todos/${id}`);
+  }
+
 }

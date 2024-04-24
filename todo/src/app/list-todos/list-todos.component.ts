@@ -13,22 +13,34 @@ export class ListTodosComponent implements OnInit{
 
   todos : Todo[] = [];
   username : string = '';
-
+  message : string = '';
   constructor(
     private todoDataService : TodoDataService
   ) {}
 
   ngOnInit(): void {
-   
+    this.refreshTodos();
+  }
+  
+  deleteTodo(id: number) {
+    this.todoDataService.deleteTodo("Abhishek",id).subscribe(
+      response => {
+        console.log(response);
+        this.message = `Delete of Todo ${id}Successful`;
+        this.refreshTodos();
+      }
+    );
+    console.log(`delete ${id}`);
+  }
+
+  refreshTodos() {
     this.todoDataService.retrieveAllTodos("Abhishek").subscribe(
       response => {
         this.todos = response;
         console.log(response);
       }
-    );
+    );  
   }
-
-  
 
   // [
   //   new Todo(1,'Learn to  move',false,new Date()),
