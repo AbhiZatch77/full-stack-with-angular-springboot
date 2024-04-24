@@ -1,4 +1,4 @@
-package com.sboot.rest.webservices.restfulwebservices;
+package com.sboot.rest.webservices.restfulwebservices.helloworld;
 
 public class HelloWorldBean {
 
