@@ -1,6 +1,7 @@
 import { NgIf, NgFor, UpperCasePipe, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-todos',
@@ -15,18 +16,24 @@ export class ListTodosComponent implements OnInit{
   username : string = '';
   message : string = '';
   constructor(
-    private todoDataService : TodoDataService
+    private todoDataService : TodoDataService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.refreshTodos();
   }
   
+  updateTodo(id : number) {
+    console.log(`update ${id} Todo`);
+    this.router.navigate(['todos',id]);
+  }
+
   deleteTodo(id: number) {
     this.todoDataService.deleteTodo("Abhishek",id).subscribe(
       response => {
         console.log(response);
-        this.message = `Delete of Todo ${id}Successful`;
+        this.message = `Delete of Todo ${id} Successful`;
         this.refreshTodos();
       }
     );
@@ -40,6 +47,10 @@ export class ListTodosComponent implements OnInit{
         console.log(response);
       }
     );  
+  }
+
+  addTodo() {
+    this.router.navigate(['todos',-1]);
   }
 
   // [
