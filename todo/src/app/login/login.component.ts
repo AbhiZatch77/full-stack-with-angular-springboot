@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
+import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,9 @@ export class LoginComponent {
   invalidCreds = false;
 
   constructor(private router: Router, 
-    private hardcodedAuthenticationService:HardcodedAuthenticationService) {
+    private hardcodedAuthenticationService:HardcodedAuthenticationService,
+    private basicAuthenticationService : BasicAuthenticationService
+  ) {
 
   }
 
@@ -33,6 +37,22 @@ export class LoginComponent {
     else {
       this.invalidCreds = true;
     }
+  }
+
+  handleBasicAuthLogin() {
+    
+    this.basicAuthenticationService.executeAuthenticationService(this.username,this.password)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['welcome',this.username]);
+          this.invalidCreds = false;
+        },
+        error => {
+          console.log(error);
+          this.invalidCreds = true;
+        }
+      ); 
   }
 
 }
