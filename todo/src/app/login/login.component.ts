@@ -16,8 +16,8 @@ import { error } from 'console';
 export class LoginComponent {
 
   errorMessage = "Invalid Credentials"
-  username = "Abhishek";
-  password = "test";
+  username = "admin";
+  password = "admin";
   invalidCreds = false;
 
   constructor(private router: Router, 

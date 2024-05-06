@@ -11,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(),
     provideHttpClient(withInterceptorsFromDi()),
-    // {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpIntercepterBasicAuthService, multi: true}
   ]
 };
