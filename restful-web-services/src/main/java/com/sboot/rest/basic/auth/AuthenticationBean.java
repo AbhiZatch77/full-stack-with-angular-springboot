@@ -1,4 +1,4 @@
-package com.sboot.rest.webservices.restfulwebservices.basic.auth;
+package com.sboot.rest.basic.auth;
 
 public class AuthenticationBean {
 
