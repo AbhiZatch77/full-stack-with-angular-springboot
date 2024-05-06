@@ -55,4 +55,20 @@ export class LoginComponent {
       ); 
   }
 
+  handleJWTAuthLogin() {
+    
+    this.basicAuthenticationService.executeJWTAuthenticationService(this.username,this.password)
+      .subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['welcome',this.username]);
+          this.invalidCreds = false;
+        },
+        error => {
+          console.log(error);
+          this.invalidCreds = true;
+        }
+      ); 
+  }
+
 }
