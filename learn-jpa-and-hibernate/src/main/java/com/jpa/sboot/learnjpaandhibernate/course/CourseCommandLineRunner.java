@@ -21,14 +21,19 @@ public class CourseCommandLineRunner implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		repository.save(new Course(1,"Learn AWS ","Abhishek"));
-		repository.save(new Course(2,"Learn Angular ","Abhishek"));
-		repository.save(new Course(3,"Learn Springboot ","Abhishek"));
+		repository.save(new Course(1,"Learn AWS","Abhishek"));
+		repository.save(new Course(2,"Learn Angular","Abhis"));
+		repository.save(new Course(3,"Learn Springboot","Abhishek"));
 		
 		repository.deleteById(1l);
 		
 		System.out.println(repository.findById(2l));
 		System.out.println(repository.findById(3l));
+		
+		System.out.println(repository.findAll());
+		System.out.println(repository.count());
+		System.out.println(repository.findByAuthor("Abhishek"));
+		System.out.println(repository.findByName("Learn Angular"));
 		
 	}
 
